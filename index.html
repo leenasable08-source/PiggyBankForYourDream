@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Piggy Bank – Dream Tracker</title>
+  <link rel="stylesheet" href="C:\Users\HP\OneDrive\Desktop\project\smart-piggy-bank\style.css" />
+</head>
+<body>
+  <div class="floating-coins" aria-hidden="true"></div>
+  <div class="overlay" id="withdrawOverlay"></div>
+
+  <header class="hero">
+    <div>
+      <p class="eyebrow">Smart Piggy Bank 🐷</p>
+      <h1>Dream Tracker</h1>
+      <p class="subtitle">Save for your dreams, protect your progress, and stay emotionally connected to your goals. 💭💰</p>
+    </div>
+    <button class="theme-btn" id="themeToggle">Toggle Theme ✨</button>
+  </header>
+
+  <main class="container">
+    <section class="stats-grid">
+      <div class="card stat-card">
+        <p>Total Dreams</p>
+        <h2 id="totalGoals">0</h2>
+      </div>
+      <div class="card stat-card">
+        <p>Total Saved</p>
+        <h2 id="totalSaved">₹0</h2>
+      </div>
+      <div class="card stat-card">
+        <p>Completed Goals</p>
+        <h2 id="completedGoals">0</h2>
+      </div>
+      <div class="card stat-card">
+        <p>Progress Feeling</p>
+        <h2 id="progressMood">Let’s start 🚀</h2>
+      </div>
+    </section>
+
+    <section class="layout-grid">
+      <div class="left-column">
+        <section class="card form-card">
+          <div class="section-title">
+            <h3>Create New Dream 🎯</h3>
+            <p>Make one piggy bank for one dream.</p>
+          </div>
+
+          <form id="goalForm" class="goal-form">
+            <div class="form-group">
+              <label for="goalName">Dream name</label>
+              <input type="text" id="goalName" placeholder="Buy Laptop 💻" required />
+            </div>
+
+            <div class="two-col">
+              <div class="form-group">
+                <label for="targetAmount">Target amount</label>
+                <input type="number" id="targetAmount" min="1" placeholder="50000" required />
+              </div>
+              <div class="form-group">
+                <label for="deadline">Deadline</label>
+                <input type="date" id="deadline" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="goalImage">Image URL (optional)</label>
+              <input type="url" id="goalImage" placeholder="https://..." />
+            </div>
+
+            <div class="form-group">
+              <label for="futureLetter">Letter to future self 💌</label>
+              <textarea id="futureLetter" rows="4" placeholder="Dear future me, I’m doing this because..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="penalties">Penalty tasks (one per line) ⚡</label>
+              <textarea id="penalties" rows="4" placeholder="Do 20 pushups&#10;Study for 1 hour&#10;No Instagram for 1 day"></textarea>
+            </div>
+
+            <button type="submit" class="primary-btn">Create Piggy Bank 🐷</button>
+          </form>
+        </section>
+
+        <section class="card chart-card">
+          <div class="section-title">
+            <h3>Dream Overview 📊</h3>
+            <p>Distribution of saved money across all dreams.</p>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="goalChart" width="320" height="320"></canvas>
+          </div>
+          <div id="chartLegend" class="chart-legend"></div>
+        </section>
+      </div>
+
+      <div class="right-column">
+        <section class="card dashboard-card">
+          <div class="section-title dashboard-head">
+            <div>
+              <h3>Your Piggy Banks 📂</h3>
+              <p>Manage all dreams from one dashboard.</p>
+            </div>
+            <button id="seedDemo" class="secondary-btn">Add Demo Goals</button>
+          </div>
+          <div id="goalsContainer" class="goals-container"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <template id="goalCardTemplate">
+    <article class="goal-card">
+      <div class="goal-top">
+        <div class="goal-image-wrap">
+          <img class="goal-image" alt="Dream visual" />
+        </div>
+        <div class="goal-main">
+          <div class="goal-title-row">
+            <h4 class="goal-title"></h4>
+            <span class="goal-status"></span>
+          </div>
+          <p class="goal-deadline"></p>
+          <p class="goal-amounts"></p>
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+          <p class="progress-text"></p>
+        </div>
+      </div>
+
+      <div class="actions-row">
+        <input type="number" class="money-input" min="1" placeholder="Enter amount" />
+        <button class="add-btn">Add Money ➕</button>
+        <button class="withdraw-btn">Withdraw ➖</button>
+        <button class="letter-btn">Open Letter 💌</button>
+        <button class="delete-btn">Delete</button>
+      </div>
+
+      <div class="penalty-box hidden"></div>
+      <div class="letter-box hidden"></div>
+    </article>
+  </template>
+
+  <div id="toast" class="toast hidden"></div>
+  <div id="confettiContainer" class="confetti-container" aria-hidden="true"></div>
+  <div id="emojiRain" class="emoji-rain" aria-hidden="true"></div>
+
+  <script src="C:\Users\HP\OneDrive\Desktop\project\smart-piggy-bank\script.js"></script>
+</body>
+</html>
